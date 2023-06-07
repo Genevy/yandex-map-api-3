@@ -1,8 +1,12 @@
-# yandex-map-api-3
-Яндекс Карта JS API 3.0
+<div align="center"><h3>Яндекс Карта JS API 3.0</h3></div>
 
+##
+
+<br>
+<br>
 <p align="center">🔎 Preview on <a href="https://genevy.github.io/yandex-map-api-3/"><strong>GitHub Pages »</strong></a></p>
-
+<br>
+<br>
 
   В начале создаём глобальную переменную "map", присваивая ей значение null. чтобы начать работать с объектом когда он будет создан в функции main()
   
@@ -70,4 +74,13 @@
       map.addChild(new YMapMarker({coordinates: CENTER_COORDINATES}));
 
       // Добавление маркера на карту
-      map.addChild(new YMapMarker({coordinates: MARKER_COORDINATES}, imgContainer));
+      map.addChild(new YMapMarker({coordinates: MARKER_COORDINATES}, imgContainer));`
+      
+
+
+##
+<br>
+<div align="center"><p>© Made with care for everyone's use by <a href="https://github.com/genevy">Evgeny Striganov</a></p></div>
+      
+      
+      
