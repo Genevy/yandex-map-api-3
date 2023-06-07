@@ -72,7 +72,7 @@
       map.addChild(new YMapMarker({coordinates: CENTER_COORDINATES}));
 
       // Добавление маркера на карту
-      map.addChild(new YMapMarker({coordinates: MARKER_COORDINATES}, imgContainer));`
+      map.addChild(new YMapMarker({coordinates: MARKER_COORDINATES}, imgContainer));
       
 
 <br>
