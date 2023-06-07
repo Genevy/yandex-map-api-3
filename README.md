@@ -5,9 +5,6 @@
 
 <br>
 <br>
-<p align="center">🔎 Preview on <a href="https://genevy.github.io/yandex-map-api-3/"><strong>GitHub Pages »</strong></a></p>
-<br>
-<br>
 
   В начале создаём глобальную переменную "map", присваивая ей значение null. чтобы начать работать с объектом когда он будет создан в функции main()
   
@@ -78,6 +75,9 @@
       map.addChild(new YMapMarker({coordinates: MARKER_COORDINATES}, imgContainer));`
       
 
+<br>
+<p align="center">🔎 Preview on <a href="https://genevy.github.io/yandex-map-api-3/"><strong>GitHub Pages »</strong></a></p>
+<br>
 
 ##
 <br>
