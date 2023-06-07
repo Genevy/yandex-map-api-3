@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <title>Яндекс Карта JS API 3.0</title>
+  <meta name="description" content="Яндес карта API 3 c добавлением собствнного маркера и заголовка к нему">
+  <!-- Подключаем API 3.0. https://developer.tech.yandex.ru - получем и устанавливаем "JavaScript API и HTTP Геокодер" персональный api ключ, 
+    обязательно в настройках ключа прописываем разрешенные домены в разделе "Ограничение по HTTP Referer" -->
+  <script src="https://api-maps.yandex.ru/3.0/?apikey=6042f914-52d6-4436-8fa8-6b97dc317ae7&lang=ru_RU" type="text/javascript"></script>
+
+  <script>
+    window.map = null;
+
+    // Главная функция, вызывается при запуске скрипта
+    main();
+    async function main() {
+      // ожидание загрузки модулей
+      await ymaps3.ready;
+      const {
+        YMap,
+        YMapDefaultSchemeLayer,
+        YMapControls,
+        YMapDefaultFeaturesLayer,
+        YMapMarker
+      } = ymaps3;
+
+      // Импорт модулей для элементов управления на карте
+      const {YMapZoomControl, YMapGeolocationControl} = await ymaps3.import('@yandex/ymaps3-controls@0.0.1');
+
+      // Координаты центра карты
+      const CENTER_COORDINATES = [37.623082, 55.752540];
+      // координаты метки на карте
+      const MARKER_COORDINATES = [37.623082, 55.752540];
+
+      // Объект с параметрами центра и зумом карты
+      const LOCATION = {center: CENTER_COORDINATES, zoom: 9};
+
+      // Создание объекта карты
+      map = new YMap(document.getElementById('map'), {location: LOCATION});
+
+      // Добавление слоев на карту
+      map.addChild(scheme = new YMapDefaultSchemeLayer());
+      map.addChild(new YMapDefaultFeaturesLayer());
+
+      // Добавление элементов управления на карту
+      map.addChild(new YMapControls({position: 'right'})
+        .addChild(new YMapZoomControl({}))
+      );
+      map.addChild(new YMapControls({position: 'top right'})
+        .addChild(new YMapGeolocationControl({}))
+      );
+
+      // Создание маркера
+      const el = document.createElement('img');
+      el.className = 'my-marker';
+      el.src = './marker.svg';
+      el.title = 'Маркер';
+      // При клике на маркер меняем центр карты на LOCATION с заданным duration
+      el.onclick = () => map.update({location: {...LOCATION, duration: 400}});
+
+      // Создание заголовка маркера
+      const markerTitle = document.createElement('div');
+      markerTitle.className = 'marker-title';
+      markerTitle.innerHTML = 'Заголовок маркера';
+
+      // Контейнер для элементов маркера
+      const imgContainer = document.createElement('div');
+      imgContainer.appendChild(el);
+      imgContainer.appendChild(markerTitle);
+
+      // Добавление центра карты
+      map.addChild(new YMapMarker({coordinates: CENTER_COORDINATES}));
+
+      // Добавление маркера на карту
+      map.addChild(new YMapMarker({coordinates: MARKER_COORDINATES}, imgContainer));
+    }
+  </script>
+
+  <style>
+  html,
+  body,
+  #map {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Yandex Sans Text', Arial, Helvetica, sans-serif;
+  }
+
+  .my-marker {
+    position: relative;
+    box-sizing: border-box;
+    transform: translate(-50%,calc(-50% - 24px));
+    cursor: pointer;
+  }
+
+  .marker-title {
+    position: absolute;
+    top: calc(-50% - 6px);
+    left: calc(+50% - 5px);
+    max-width: 180px;
+    padding: 3px 5px 4px;
+    margin-left: 3px;
+    border-radius: 6px;
+    background-color: #fff;
+    font-size: 100%;
+    color: #000;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  </style>
+</head>
+<body>
+  <!-- Карта -->
+  <div id="map"></div>
+  <!--/ END -->
+</body>
+</html>
