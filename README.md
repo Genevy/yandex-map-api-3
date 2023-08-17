@@ -24,7 +24,10 @@ window.map = null;
       } = ymaps3;
 
       // Импорт модулей для элементов управления на карте
-      const {YMapZoomControl, YMapGeolocationControl} = await ymaps3.import('@yandex/ymaps3-controls@0.0.1');
+      const {
+        YMapZoomControl,
+        YMapGeolocationControl
+      } = await ymaps3.import('@yandex/ymaps3-controls@0.0.1');
 
       // Координаты центра карты
       const CENTER_COORDINATES = [37.623082, 55.752540];
