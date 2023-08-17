@@ -7,7 +7,7 @@
 <br>
 
 
- ``` 
+ ```javascript:_document.js 
 window.map = null;
 
     // Главная функция, вызывается при запуске скрипта
